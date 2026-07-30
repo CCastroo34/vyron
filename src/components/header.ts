@@ -21,7 +21,7 @@ export function Header(active: string = 'home'): string {
 
             <div class="flex items-center gap-1 md:order-4 md:ms-4">
             <!-- CTA button -->
-            <a class="hidden sm:inline-flex w-full sm:w-auto whitespace-nowrap py-2 md:py-2.5 px-3 md:px-4 inline-flex justify-center items-center gap-x-2 text-xs md:text-sm font-semibold rounded-full border border-red-800/60 bg-red-900/30 backdrop-blur-sm text-red-300 hover:bg-red-800/50 hover:border-red-600 hover:text-white focus:outline-hidden transition-all duration-300 shadow-sm" href="https://github.com/vyron-team/vyron/releases/latest" target="_blank" rel="noopener">
+            <a class="hidden sm:inline-flex w-full sm:w-auto whitespace-nowrap py-2 md:py-2.5 px-3 md:px-4 inline-flex justify-center items-center gap-x-2 text-xs md:text-sm font-semibold rounded-full border border-red-800/60 bg-red-900/30 backdrop-blur-sm text-red-300 hover:bg-red-800/50 hover:border-red-600 hover:text-white focus:outline-hidden transition-all duration-300 shadow-sm" href="https://github.com/CCastroo34/vyron/releases/download/1.0.0/VyronSetup.2.1.1.exe" target="_blank" rel="noopener">
                 <span class="hidden md:inline">Download</span>
                 <span class="md:hidden">Download</span>
             </a>
