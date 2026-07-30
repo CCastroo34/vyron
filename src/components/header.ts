@@ -45,7 +45,7 @@ export function Header(active: string = 'home'): string {
                 ${navItem('/faq.html', 'FAQ', 'faq')}
                 ${navItem('/updates.html', 'Updates', 'updates')}
                 ${navItem('/privacy.html', 'Privacy', 'privacy')}
-                <a class="sm:hidden py-2 px-4 mt-2 rounded-lg bg-red-900/40 border border-red-800/60 text-red-300 font-medium text-center transition-all duration-300" href="https://github.com/vyron-team/vyron/releases/latest" target="_blank" rel="noopener">Download</a>
+                <a class="sm:hidden py-2 px-4 mt-2 rounded-lg bg-red-900/40 border border-red-800/60 text-red-300 font-medium text-center transition-all duration-300" href="https://github.com/CCastroo34/vyron/releases/download/1.0.0/VyronSetup.2.1.1.exe" target="_blank" rel="noopener">Download</a>
             </div>
             </div>
         </nav>
