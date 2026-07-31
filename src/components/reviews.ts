@@ -12,21 +12,21 @@ export interface ReviewItem {
 
 export const REVIEW_LIST: ReviewItem[] = [
   {
-    quote: 'Vyron creates the kind of horror where you are scared before anything even happens. The atmosphere, sound design, and darkness make every room feel dangerous.',
+    quote: 'Vyron crea ese tipo de terror donde tienes miedo incluso antes de que pase algo. La atmósfera, los sonidos y la oscuridad hacen que cada habitación se sienta peligrosa.',
     author: 'brunitobonito',
-    role: 'Verified Player',
+    role: 'Jugador verificado',
     rating: 5,
   },
   {
-    quote: 'Playing this with friends is where the game shines. You can hear your teammates panic when something goes wrong, and that makes the experience even better.',
+    quote: 'Jugarlo con amigos es donde realmente brilla. Escuchar cómo tus compañeros entran en pánico cuando algo sale mal hace que la experiencia sea mucho mejor.',
     author: 'belikin',
-    role: 'Verified Player',
+    role: 'Jugador verificado',
     rating: 5,
   },
   {
-    quote: 'The best part about Vyron is how unpredictable it feels. Areas you already explored can suddenly feel completely different the next time you return.',
+    quote: 'Lo mejor de Vyron es que nunca sabes qué esperar. Lugares que ya exploraste pueden sentirse completamente diferentes cuando vuelves.',
     author: 'rubenkikijames',
-    role: 'Verified Player',
+    role: 'Jugador verificado',
     rating: 4,
   },
   {
@@ -36,9 +36,9 @@ export const REVIEW_LIST: ReviewItem[] = [
     rating: 5,
   },
   {
-    quote: 'The co-op experience is amazing. There were moments where we were laughing one second and completely silent the next because we knew something was nearby.',
+    quote: 'El modo cooperativo está increíble. Hubo momentos donde estábamos riéndonos y al segundo siguiente todos estábamos callados porque sabíamos que algo estaba cerca.',
     author: 'XimenaFOngg',
-    role: 'Verified Player',
+    role: 'Jugador verificado',
     rating: 5,
   },
   {
@@ -71,7 +71,7 @@ export function Reviews(): string {
       <!-- Reviews Section -->
       <div id="reviews" class="mt-12 sm:mt-16 scroll-mt-28">
         <div class="mb-6 sm:mb-8 max-w-4xl">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-100 mb-3 sm:mb-4 tracking-tight">What Playtesters Are Saying</h2>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-100 mb-3 sm:mb-4 tracking-tight">What Players Are Saying</h2>
           <div class="w-12 sm:w-16 h-1 bg-gradient-to-r from-red-700 to-red-900"></div>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
