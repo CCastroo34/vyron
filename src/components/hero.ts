@@ -1,4 +1,5 @@
 import { FEATURE_LIST } from './features.ts'
+import { Reviews } from './reviews.ts'
 
 export function Hero(): string {
   const featureCards = FEATURE_LIST.map((f) => `
@@ -175,6 +176,8 @@ export function Hero(): string {
           ${featureCards}
         </div>
       </div>
+
+      ${Reviews()}
 
     </section>
   `
