@@ -18,6 +18,7 @@ export default defineConfig({
         requirements: resolve(__dirname, 'requirements.html'),
         updates: resolve(__dirname, 'updates.html'),
         privacy: resolve(__dirname, 'privacy.html'),
+        notFound: resolve(__dirname, '404.html'),
       },
     },
   },
