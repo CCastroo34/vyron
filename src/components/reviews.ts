@@ -53,6 +53,12 @@ export const REVIEW_LIST: ReviewItem[] = [
   role: 'Jugador verificado',
   rating: 2,
 },
+  {
+  quote: 'Lo jugué con un amigo llamado Matheo y la verdad nos gustó mucho. Nos divertimos bastante jugando juntos, el modo multijugador hace que la experiencia sea mucho mejor.',
+  author: 'veekabo',
+  role: 'Jugador verificado',
+  rating: 5,
+},
 ]
 
 function renderStars(rating: number): string {
