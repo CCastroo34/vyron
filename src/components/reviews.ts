@@ -12,22 +12,40 @@ export interface ReviewItem {
 
 export const REVIEW_LIST: ReviewItem[] = [
   {
-    quote: 'The atmosphere got under my skin more than any jump scare could. Every corridor felt wrong in a different way.',
-    author: 'Playtest Participant',
-    role: 'Closed Beta',
+    quote: 'Vyron creates the kind of horror where you are scared before anything even happens. The atmosphere, sound design, and darkness make every room feel dangerous.',
+    author: 'brunitobonito',
+    role: 'Verified Player',
     rating: 5,
   },
   {
-    quote: 'Playing with friends made the tension worse, not better. Nobody wanted to split up, but the puzzles forced us to.',
-    author: 'Playtest Participant',
-    role: 'Closed Beta',
+    quote: 'Playing this with friends is where the game shines. You can hear your teammates panic when something goes wrong, and that makes the experience even better.',
+    author: 'belikin',
+    role: 'Verified Player',
     rating: 5,
   },
   {
-    quote: 'The house genuinely doesn\'t feel the same twice. I got turned around in a hallway I\'d already been through.',
-    author: 'Playtest Participant',
-    role: 'Closed Beta',
+    quote: 'The best part about Vyron is how unpredictable it feels. Areas you already explored can suddenly feel completely different the next time you return.',
+    author: 'rubenkikijames',
+    role: 'Verified Player',
     rating: 4,
+  },
+  {
+    quote: 'It is not just about jump scares. The game builds tension slowly and makes you question every sound you hear while exploring.',
+    author: 'RamsesWASD',
+    role: 'Verified Player',
+    rating: 5,
+  },
+  {
+    quote: 'The co-op experience is amazing. There were moments where we were laughing one second and completely silent the next because we knew something was nearby.',
+    author: 'XimenaFOngg',
+    role: 'Verified Player',
+    rating: 5,
+  },
+  {
+    quote: 'Vyron has a great balance between exploration, puzzles, and horror. It feels like every decision matters when you are trying to survive with your team.',
+    author: 'TheRealMCJohnn',
+    role: 'Verified Player',
+    rating: 3,
   },
 ]
 
