@@ -14,7 +14,7 @@ const FAQ_LIST: FaqItem[] = [
   },
   {
     question: 'Do I need to run the installer as administrator?',
-    answer: 'Yes. Running the installer as administrator allows Vyron to install all required files, dependencies, and any additional components needed for the game. Right-click the <kbd class="inline-flex items-center rounded-md border border-slate-700 bg-slate-800 px-2 py-0.5 text-xs font-mono text-slate-200 shadow-sm">Vyron-setup.exe</kbd> file and choose <span class="font-bold text-red-400">"Run as administrator"</span>. This allows the installer to copy files to <strong>Program Files</strong>, install required components, and complete the setup without permission issues.',
+    answer: 'Yes. Running the installer as administrator allows Vyron to install all required files, dependencies, and any additional components needed for the game. Right-click the <kbd class="inline-flex items-center rounded-md border border-slate-700 bg-slate-800 px-2 py-0.5 text-xs font-mono text-slate-200 shadow-sm">VyronSetup.2.1.1.exe</kbd> file and choose <span class="font-bold text-red-400">"Run as administrator"</span>. This allows the installer to copy files to <strong>Program Files</strong>, install required components, and complete the setup without permission issues.',
   },
   {
     question: 'Why does the archive appear to be corrupted?',
