@@ -10,7 +10,7 @@ const MIN_SPECS: SpecRow[] = [
   { label: 'Graphics', value: 'NVIDIA GeForce GTX 660 / AMD Radeon HD 7870 (2 GB VRAM)' },
   { label: 'DirectX', value: 'Version 11' },
   { label: 'Network', value: 'Broadband Internet connection' },
-  { label: 'Storage', value: '13 GB available space' },
+  { label: 'Storage', value: '6 GB available space' },
 ];
 
 const REC_SPECS: SpecRow[] = [
@@ -20,7 +20,7 @@ const REC_SPECS: SpecRow[] = [
   { label: 'Graphics', value: 'NVIDIA GeForce RTX 4070 SUPER / AMD Radeon RX 7900 XT (12 GB+ VRAM)' },
   { label: 'DirectX', value: 'Version 12' },
   { label: 'Network', value: 'Broadband Internet connection' },
-  { label: 'Storage', value: '34 GB available space (NVMe SSD recommended)' },
+  { label: 'Storage', value: '26 GB available space (NVMe SSD recommended)' },
 ];
 
 const renderTable = (rows: SpecRow[]) => rows.map((r) => `
