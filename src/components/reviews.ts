@@ -12,7 +12,7 @@ export interface ReviewItem {
 
 export const REVIEW_LIST: ReviewItem[] = [
   {
-    quote: 'Vyron crea ese tipo de terror donde tienes miedo incluso antes de que pase algo. La atmósfera, los sonidos y la oscuridad hacen que cada habitación se sienta peligrosa.',
+    quote: 'Me gustó mucho jugar Vyron, en multijugador con amigos se disfruta bastante. Las 4 historias para desbloquear hacen que sigas jugando para descubrir más cosas.',
     author: 'brunitobonito',
     role: 'Jugador verificado',
     rating: 5,
@@ -24,8 +24,8 @@ export const REVIEW_LIST: ReviewItem[] = [
     rating: 5,
   },
   {
-    quote: 'Lo mejor de Vyron es que nunca sabes qué esperar. Lugares que ya exploraste pueden sentirse completamente diferentes cuando vuelves.',
-    author: 'rubenkikijames',
+    quote: 'Muy buen juego de terror, recomendado al 100%. Me la pasé muy bien jugándolo con amigos.',
+    author: 'LiaRoblox67',
     role: 'Jugador verificado',
     rating: 4,
   },
@@ -47,6 +47,12 @@ export const REVIEW_LIST: ReviewItem[] = [
     role: 'Verified Player',
     rating: 3,
   },
+  {
+  quote: 'El juego tiene buenas ideas y la ambientación está bien, pero sentí que le faltaba más contenido. Algunas partes se vuelven repetitivas y esperaba un poco más de variedad.',
+  author: 'DarkNeko22',
+  role: 'Jugador verificado',
+  rating: 2,
+},
 ]
 
 function renderStars(rating: number): string {
