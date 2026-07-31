@@ -4,7 +4,7 @@ export interface FeatureItem {
   icon: string
 }
 
-const FEATURE_LIST: FeatureItem[] = [
+export const FEATURE_LIST: FeatureItem[] = [
   {
     title: 'Online Co-op Investigation',
     description: 'Team up with friends in first-person multiplayer co-op to explore William\'s abandoned family home and piece together what happened to him.',
