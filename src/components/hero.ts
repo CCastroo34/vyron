@@ -1,4 +1,17 @@
+import { FEATURE_LIST } from './features.ts'
+
 export function Hero(): string {
+  const featureCards = FEATURE_LIST.map((f) => `
+            <div class="group bg-gradient-to-b from-red-950/20 to-black border border-red-900/30 rounded-xl p-5 sm:p-6 hover:border-red-700/60 hover:shadow-lg hover:shadow-red-950/40 transition-all duration-300">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 mb-3 sm:mb-4 flex items-center justify-center rounded-lg bg-red-900/30 border border-red-800/40 group-hover:bg-red-800/40 transition-colors duration-300">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="${f.icon}"></path>
+                </svg>
+              </div>
+              <h3 class="text-base sm:text-lg font-semibold text-gray-100 mb-2">${f.title}</h3>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">${f.description}</p>
+            </div>`).join('')
+
   return `
     <section class="max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 mx-auto w-full relative pt-24 sm:pt-28 lg:pt-32 mb-8 sm:mb-12">
 
@@ -150,6 +163,17 @@ export function Hero(): string {
 
         </div>
 
+      </div>
+
+      <!-- Key Features Section -->
+      <div id="key-features" class="mt-12 sm:mt-16 scroll-mt-28">
+        <div class="mb-6 sm:mb-8 max-w-4xl">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-100 mb-3 sm:mb-4 tracking-tight">Key Features</h2>
+          <div class="w-12 sm:w-16 h-1 bg-gradient-to-r from-red-700 to-red-900"></div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          ${featureCards}
+        </div>
       </div>
 
     </section>
