@@ -40,6 +40,7 @@ export function Header(active: string = 'home'): string {
             <div id="vyron-navbar-collapse" class="hidden overflow-hidden transition-all duration-300 basis-full grow md:block">
             <div class="flex flex-col md:flex-row md:items-center md:justify-end gap-1 md:gap-4 mt-4 md:mt-0 py-3 md:py-0 md:ps-7 border-t md:border-t-0 border-red-900/40 md:border-none">
                 ${navItem('/', 'Home', 'home')}
+                ${navItem('/#reviews', 'Reviews', 'reviews')}
                 ${navItem('/features.html', 'Features', 'features')}
                 ${navItem('/requirements.html', 'Requirements', 'requirements')}
                 ${navItem('/faq.html', 'FAQ', 'faq')}
