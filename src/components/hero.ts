@@ -134,6 +134,20 @@ export function Hero(): string {
               <span class="px-2 sm:px-3 py-1 bg-emerald-900/40 border border-emerald-800/50 hover:bg-emerald-800/50 text-emerald-200 text-xs sm:text-sm rounded cursor-default transition-all duration-200">Survival</span>
             </div>
           </div>
+
+          <!-- Supported Languages -->
+          <div class="mb-4 sm:mb-6">
+            <p class="text-xs sm:text-sm text-gray-500 mb-3">Supported Languages:</p>
+            <div class="flex flex-wrap gap-2">
+              <img src="https://flagcdn.com/w40/us.png" alt="English (US)" title="English (US)" class="h-6 sm:h-7 w-auto rounded shadow-sm border border-white/10">
+              <img src="https://flagcdn.com/w40/mx.png" alt="Español (México)" title="Español (México)" class="h-6 sm:h-7 w-auto rounded shadow-sm border border-white/10">
+              <img src="https://flagcdn.com/w40/es.png" alt="Español (España)" title="Español (España)" class="h-6 sm:h-7 w-auto rounded shadow-sm border border-white/10">
+              <img src="https://flagcdn.com/w40/tr.png" alt="Türkçe" title="Türkçe" class="h-6 sm:h-7 w-auto rounded shadow-sm border border-white/10">
+              <img src="https://flagcdn.com/w40/de.png" alt="Deutsch" title="Deutsch" class="h-6 sm:h-7 w-auto rounded shadow-sm border border-white/10">
+              <img src="https://flagcdn.com/w40/fr.png" alt="Français" title="Français" class="h-6 sm:h-7 w-auto rounded shadow-sm border border-white/10">
+            </div>
+          </div>
+
         </div>
 
       </div>
