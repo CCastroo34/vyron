@@ -1,8 +1,8 @@
 /** Single source: direct download URL for the current release asset */
 export const GAME_DOWNLOAD = {
   // Direct link to the v1.0.0 release asset in CCastroo34/vyron
-  url: 'https://github.com/CCastroo34/vyron/releases/download/1.0.0/VyronSetup.2.1.1.exe',
-  fileName: 'VyronSetup.2.1.1.exe',
+  url: 'https://github.com/CCastroo34/vyron/releases/download/1.0.0/Vyron-SetUp.exe',
+  fileName: 'Vyron-SetUp',
 } as const
 
 const TRANSITION_MS = 320
