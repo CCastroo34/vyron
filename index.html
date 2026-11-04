@@ -1,0 +1,1348 @@
+<!DOCTYPE html><html lang="en" data-theme="dark">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TeamWatch - Watch Together</title>
+	<link rel="icon" type="image/png" href="images/hero-logo.png">
+	<meta name="description" content="The ultimate premium watch party experience. Sync video with friends in 4K HDR.">
+	<meta name="keywords" content="watch party, teamwatch, sync video, watch together, movies online, anime party, netflix party alternative, stream with friends, 4k watch party">
+
+	<!-- Open Graph / Facebook / Discord -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://www.vyrondev.com/">
+	<meta property="og:title" content="TeamWatch - Watch Together">
+	<meta property="og:description" content="Host premium watch parties with friends in 4K HDR. No lag, perfect sync. Join the revolution.">
+	<meta property="og:image" content="images/hero-logo.png">
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://www.vyrondev.com/">
+	<meta property="twitter:title" content="TeamWatch - Watch Together">
+	<meta property="twitter:description" content="Host premium watch parties with friends in 4K HDR. No lag, perfect sync. Join the revolution.">
+	<meta property="twitter:image" content="https://www.vyrondev.com/images/hero-logo.png">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;700;800&amp;display=swap" rel="stylesheet">
+
+	<!-- Icons -->
+	<link rel="stylesheet" href="css/all.min.css">
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+		/* Page-specific ambient effects */
+		.ambient-orb {
+			position: fixed;
+			border-radius: 50%;
+			filter: blur(100px);
+			pointer-events: none;
+			z-index: -1;
+			opacity: 0.4;
+		}
+
+		.orb-1 {
+			width: 500px;
+			height: 500px;
+			background: rgba(229, 9, 20, 0.08);
+			top: -10%;
+			right: -10%;
+			animation: orb-float-1 20s ease-in-out infinite;
+		}
+
+		.orb-2 {
+			width: 400px;
+			height: 400px;
+			background: rgba(255, 107, 53, 0.06);
+			bottom: 20%;
+			left: -10%;
+			animation: orb-float-2 25s ease-in-out infinite;
+		}
+
+		@keyframes orb-float-1 {
+
+			0%,
+			100% {
+				transform: translate(0, 0);
+			}
+
+			50% {
+				transform: translate(-40px, 40px);
+			}
+		}
+
+		@keyframes orb-float-2 {
+
+			0%,
+			100% {
+				transform: translate(0, 0);
+			}
+
+			50% {
+				transform: translate(30px, -30px);
+			}
+		}
+
+		/* Particle canvas */
+		#particles-canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			z-index: -1;
+			opacity: 0.6;
+		}
+
+		/* Reveal animations */
+		.reveal {
+			opacity: 0;
+			transform: translateY(40px);
+			transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		.reveal.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.reveal-delay-1 {
+			transition-delay: 0.1s;
+		}
+
+		.reveal-delay-2 {
+			transition-delay: 0.2s;
+		}
+
+		.reveal-delay-3 {
+			transition-delay: 0.3s;
+		}
+
+		/* Glowing text for section titles */
+		.section-title {
+			position: relative;
+			display: inline-block;
+		}
+
+		.section-title::after {
+			content: '';
+			position: absolute;
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 60px;
+			height: 3px;
+			background: var(--accent-premium);
+			border-radius: 3px;
+		}
+
+		/* Profile section improvements */
+		.profile-showcase {
+			position: relative;
+		}
+
+		.profile-showcase img {
+			transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		/* Download section glow */
+		.download-section {
+			position: relative;
+		}
+
+		.download-section::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 60%;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.4), transparent);
+		}
+
+		/* Sponsor video wrapper glow */
+		.sponsor-video-wrapper {
+			position: relative;
+			transition: all 0.5s ease;
+		}
+
+		.sponsor-video-wrapper:hover {
+			box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6) !important;
+		}
+
+		/* Mobile hamburger menu */
+		.hamburger {
+			display: none;
+			background: none;
+			border: none;
+			color: var(--text-primary);
+			font-size: 1.4rem;
+			cursor: pointer;
+			padding: 8px;
+			border-radius: 8px;
+			transition: background 0.2s ease;
+			z-index: 1001;
+		}
+
+		.hamburger:hover {
+			background: rgba(255, 255, 255, 0.06);
+		}
+
+		.mobile-nav-overlay {
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.95);
+			backdrop-filter: blur(30px);
+			z-index: 999;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 0;
+			transform: translateY(-100%);
+			transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		.mobile-nav-overlay.open {
+			transform: translateY(0);
+		}
+
+		.mobile-nav-overlay a {
+			font-family: var(--font-heading);
+			font-size: 1.6rem;
+			color: var(--text-primary);
+			text-decoration: none;
+			padding: 1rem 2rem;
+			border-radius: 12px;
+			transition: all 0.3s ease;
+			opacity: 0;
+			transform: translateY(20px);
+		}
+
+		.mobile-nav-overlay.open a {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.mobile-nav-overlay a:nth-child(1) {
+			transition-delay: 0.1s;
+		}
+
+		.mobile-nav-overlay a:nth-child(2) {
+			transition-delay: 0.15s;
+		}
+
+		.mobile-nav-overlay a:nth-child(3) {
+			transition-delay: 0.2s;
+		}
+
+		.mobile-nav-overlay a:nth-child(4) {
+			transition-delay: 0.25s;
+		}
+
+		.mobile-nav-overlay a:nth-child(5) {
+			transition-delay: 0.3s;
+		}
+
+		.mobile-nav-overlay a:hover {
+			color: var(--accent-red);
+			background: rgba(229, 9, 20, 0.08);
+		}
+
+		/* How It Works section */
+		.steps-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2rem;
+			position: relative;
+		}
+
+		.step-card {
+			text-align: center;
+			padding: 2.5rem 2rem;
+			background: var(--card-bg);
+			border: 1px solid var(--card-border);
+			border-radius: 20px;
+			position: relative;
+			transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		.step-card:hover {
+			transform: translateY(-6px);
+			border-color: rgba(229, 9, 20, 0.15);
+			box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+		}
+
+		.step-number {
+			width: 52px;
+			height: 52px;
+			border-radius: 16px;
+			background: rgba(229, 9, 20, 0.1);
+			border: 1px solid rgba(229, 9, 20, 0.2);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: var(--font-heading);
+			font-weight: 800;
+			font-size: 1.2rem;
+			color: var(--accent-red);
+			margin: 0 auto 1.2rem;
+		}
+
+		.step-card h3 {
+			font-family: var(--font-heading);
+			margin-bottom: 0.6rem;
+			font-size: 1.15rem;
+		}
+
+		.step-card p {
+			color: var(--text-secondary);
+			font-size: 0.88rem;
+			line-height: 1.6;
+		}
+
+		/* Connector line between steps */
+		.steps-connector {
+			position: absolute;
+			top: 50px;
+			left: 33.3%;
+			right: 33.3%;
+			height: 2px;
+			background: linear-gradient(90deg, var(--accent-red), rgba(255, 107, 53, 0.4), var(--accent-red));
+			opacity: 0.2;
+			z-index: -1;
+		}
+
+		/* FAQ accordion */
+		.faq-list {
+			max-width: 700px;
+			margin: 0 auto;
+		}
+
+		.faq-item {
+			border: 1px solid var(--card-border);
+			border-radius: 16px;
+			margin-bottom: 0.75rem;
+			overflow: hidden;
+			background: var(--card-bg);
+			transition: all 0.3s ease;
+		}
+
+		.faq-item:hover {
+			border-color: rgba(229, 9, 20, 0.12);
+		}
+
+		.faq-question {
+			width: 100%;
+			padding: 1.2rem 1.5rem;
+			background: none;
+			border: none;
+			color: var(--text-primary);
+			font-family: var(--font-body);
+			font-size: 0.95rem;
+			font-weight: 600;
+			text-align: left;
+			cursor: pointer;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.faq-question i {
+			color: var(--accent-red);
+			font-size: 0.8rem;
+			transition: transform 0.3s ease;
+			flex-shrink: 0;
+		}
+
+		.faq-item.open .faq-question i {
+			transform: rotate(180deg);
+		}
+
+		.faq-answer {
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1), padding 0.35s ease;
+			padding: 0 1.5rem;
+		}
+
+		.faq-item.open .faq-answer {
+			max-height: 200px;
+			padding: 0 1.5rem 1.2rem;
+		}
+
+		.faq-answer p {
+			color: var(--text-secondary);
+			font-size: 0.88rem;
+			line-height: 1.7;
+		}
+
+		/* Minimal footer */
+		.site-footer {
+			padding: 2.5rem 0;
+			border-top: 1px solid var(--card-border);
+			color: var(--text-secondary);
+			font-size: 0.82rem;
+			text-align: center;
+		}
+
+		.site-footer .footer-inner {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 1rem;
+		}
+
+		.footer-links {
+			display: flex;
+			gap: 1.5rem;
+			align-items: center;
+		}
+
+		.footer-links a {
+			color: var(--text-secondary);
+			text-decoration: none;
+			font-size: 0.82rem;
+			transition: color 0.2s ease;
+		}
+
+		.footer-links a:hover {
+			color: var(--text-primary);
+		}
+
+		/* Testimonials */
+		.testimonials-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
+		}
+
+		.testimonial-card {
+			background: var(--card-bg);
+			border: 1px solid var(--card-border);
+			border-radius: 20px;
+			padding: 2rem;
+			transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+			position: relative;
+		}
+
+		.testimonial-card:hover {
+			transform: translateY(-4px);
+			border-color: rgba(229, 9, 20, 0.12);
+			box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+		}
+
+		.testimonial-card .stars {
+			color: #ffd700;
+			font-size: 0.75rem;
+			margin-bottom: 1rem;
+			letter-spacing: 2px;
+		}
+
+		.testimonial-card .quote {
+			color: var(--text-secondary);
+			font-size: 0.9rem;
+			line-height: 1.7;
+			margin-bottom: 1.2rem;
+			font-style: italic;
+		}
+
+		.testimonial-author {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.testimonial-author img {
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		.testimonial-author .name {
+			font-weight: 600;
+			font-size: 0.85rem;
+			color: var(--text-primary);
+		}
+
+		.testimonial-author .role {
+			font-size: 0.75rem;
+			color: var(--text-secondary);
+		}
+
+		/* Scroll to top */
+		.scroll-top {
+			position: fixed;
+			bottom: 2rem;
+			right: 2rem;
+			width: 44px;
+			height: 44px;
+			border-radius: 14px;
+			background: var(--accent-red);
+			color: white;
+			border: none;
+			cursor: pointer;
+			font-size: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 6px 20px rgba(229, 9, 20, 0.3);
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(10px);
+			transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+			z-index: 900;
+		}
+
+		.scroll-top.visible {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+
+		.scroll-top:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+		}
+
+		@media (max-width: 768px) {
+			.hamburger {
+				display: block;
+			}
+
+			.nav-links,
+			.desktop-only {
+				display: none !important;
+			}
+
+			.steps-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.steps-connector {
+				display: none;
+			}
+
+			.testimonials-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.site-footer .footer-inner {
+				flex-direction: column;
+				text-align: center;
+			}
+
+			.footer-links {
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.testimonials-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Ambient Background -->
+	<div class="ambient-orb orb-1"></div>
+	<div class="ambient-orb orb-2"></div>
+	<canvas id="particles-canvas" width="1920" height="1080"></canvas>
+
+	<!-- Mobile Nav Overlay -->
+	<div class="mobile-nav-overlay" id="mobileNav">
+		<a href="#features" onclick="closeMobileNav()">Features</a>
+		<a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+		<a href="#download" onclick="closeMobileNav()">Download</a>
+		<a href="login.html">Login</a>
+		<a href="room.html" style="color: var(--accent-red);">Create Room</a>
+	</div>
+
+	<nav class="navbar">
+		<div class="container">
+			<a href="#" class="logo">TEAM<span>WATCH</span></a>
+
+			<div class="nav-links">
+				<a href="#features" class="nav-link">Features</a>
+				<a href="#pricing" class="nav-link">Pricing</a>
+				<a href="#download" class="nav-link">Download</a>
+			</div>
+
+			<div class="desktop-only" style="display: flex; align-items: center; gap: 1rem;">
+				<button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+					<i class="fa-solid fa-moon"></i>
+				</button>
+				<a href="room.html" class="btn btn-outline" style="border: 1px solid rgba(229,9,20,0.4); color: var(--accent-red); font-size: 0.85rem; padding: 0.6rem 1.2rem;">+
+					Create Room</a>
+				<a href="login.html" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.6rem 1.5rem;">Login</a>
+			</div>
+
+			<button class="hamburger" id="hamburgerBtn" aria-label="Open Menu">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+		</div>
+	</nav>
+
+	<header class="hero">
+		<div class="hero-bg"></div>
+		<div class="container">
+			<div class="hero-content">
+				<div class="hero-text">
+					<p style="color: var(--accent-red); font-weight: 600; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem;">
+						<i class="fa-solid fa-play" style="margin-right: 6px;"></i> THE FUTURE OF WATCH PARTIES
+					</p>
+					<h1>Watch Together.<br>Anywhere. Forever.</h1>
+					<p>Experience the next evolution of watch parties. Sync Netflix, YouTube, and more with friends in
+						stunning 4K HDR quality with zero latency.</p>
+					<div class="btn-group">
+						<a href="room.html" class="btn btn-primary">
+							<i class="fa-solid fa-rocket" style="margin-right: 8px;"></i>Create Room
+						</a>
+						<a href="#features" class="btn btn-outline">Explore Features</a>
+					</div>
+
+					<!-- Trust indicators -->
+					<div style="margin-top: 2.5rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+						<div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-size: 0.82rem;">
+							<i class="fa-solid fa-users" style="color: var(--accent-red);"></i>
+							<span>100k+ Users</span>
+						</div>
+						<div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-size: 0.82rem;">
+							<i class="fa-solid fa-star" style="color: #ffd700;"></i>
+							<span>4.9/5 Rating</span>
+						</div>
+						<div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-size: 0.82rem;">
+							<i class="fa-solid fa-shield-halved" style="color: #4CAF50;"></i>
+							<span>Secure & Private</span>
+						</div>
+					</div>
+				</div>
+				<div class="hero-visual">
+					<div class="mockup-container">
+						<img src="images/hero-logo.png" alt="TeamWatch App Interface" class="mockup-img">
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section class="marquee-section">
+		<div class="container" style="text-align: center; margin-bottom: 2rem;">
+			<p style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 3px; font-size: 0.72rem; font-weight: 600;">
+				Trusted by viewers worldwide</p>
+		</div>
+		<div class="container">
+			<div class="sponsor-video-wrapper" style="border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); position: relative;">
+				<div style="position: absolute; inset: 0; background: linear-gradient(to right, var(--bg-primary) 0%, transparent 15%, transparent 85%, var(--bg-primary) 100%); z-index: 2; pointer-events: none;">
+				</div>
+				<video src="media/landingpage_shows.mp4" autoplay="" loop="" muted="" playsinline="" style="width: 100%; height: auto; display: block; opacity: 0.7;"></video>
+			</div>
+		</div>
+		<div class="marquee-container" style="margin-top: 3rem;">
+			<div class="marquee-content">
+				<div class="marquee-track">
+					<img src="images/Netflix_2015_logo.svg" alt="Netflix" class="partner-logo">
+					<img src="images/Disney%252B_logo.svg" alt="Disney+" class="partner-logo">
+					<img src="images/Prime_Video.png" alt="Prime Video" class="partner-logo" style="filter: grayscale(100%) invert(1);">
+					<img src="../upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max" class="partner-logo">
+					<img src="images/YouTube_Logo_2017.svg" alt="YouTube" class="partner-logo">
+				</div>
+				<div class="marquee-track">
+					<img src="images/Netflix_2015_logo.svg" alt="Netflix" class="partner-logo">
+					<img src="images/Disney%252B_logo.svg" alt="Disney+" class="partner-logo">
+					<img src="images/Prime_Video.png" alt="Prime Video" class="partner-logo" style="filter: grayscale(100%) invert(1);">
+					<img src="../upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max" class="partner-logo">
+					<img src="images/YouTube_Logo_2017.svg" alt="YouTube" class="partner-logo">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="features" class="section-padding">
+		<div class="container">
+			<div style="text-align: center; margin-bottom: 4rem;" class="reveal visible">
+				<h2 class="section-title" style="font-size: 2.5rem;">Why Choose TeamWatch?</h2>
+				<p style="color: var(--text-secondary); margin-top: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; font-size: 1rem;">
+					Engineered for the ultimate viewing
+					experience with cutting-edge technology.</p>
+			</div>
+
+			<div class="features-grid">
+				<div class="feature-card reveal reveal-delay-1 visible">
+					<i class="fa-solid fa-bolt feature-icon"></i>
+					<h3>Zero Latency</h3>
+					<p>Instant synchronization guarantees you never miss a beat or a laugh with your friends.</p>
+				</div>
+				<div class="feature-card reveal reveal-delay-2 visible">
+					<i class="fa-solid fa-wand-magic-sparkles feature-icon"></i>
+					<h3>4K HDR Support</h3>
+					<p>Crystal clear visual quality. Support for high dynamic range content for premium members.</p>
+				</div>
+				<div class="feature-card reveal reveal-delay-3">
+					<i class="fa-solid fa-users feature-icon"></i>
+					<h3>Unlimited Rooms</h3>
+					<p>Create as many public or private rooms as you want. Full control over moderation.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="stats section-padding">
+		<div class="container">
+			<div class="stats-grid">
+				<div class="stat-item reveal">
+					<h2 data-count="100">0</h2>
+					<p>Active Users (k+)</p>
+				</div>
+				<div class="stat-item reveal reveal-delay-1">
+					<h2 data-count="5">0</h2>
+					<p>Hours Watched (M+)</p>
+				</div>
+				<div class="stat-item reveal reveal-delay-2">
+					<h2 data-count="50">0</h2>
+					<p>Platforms Supported</p>
+				</div>
+				<div class="stat-item reveal reveal-delay-3">
+					<h2>4.9/5</h2>
+					<p>User Rating</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section-padding profile-showcase" style="background: radial-gradient(circle at center, rgba(229,9,20,0.04) 0%, var(--bg-primary) 100%);">
+		<div class="container">
+			<div class="hero-content" style="gap: 5rem;">
+				<div class="hero-visual reveal" style="perspective: none;">
+					<img src="images/customize_profile_ui.png" alt="Profile Customization UI" style="width: 100%; border-radius: 20px; box-shadow: 0 25px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06); transform: rotateY(5deg); transition: transform 0.6s cubic-bezier(0.22,1,0.36,1), box-shadow 0.6s ease;" onmouseover="this.style.transform='rotateY(0deg) scale(1.02)';this.style.boxShadow='0 30px 100px rgba(229,9,20,0.15), 0 0 0 1px rgba(229,9,20,0.15)'" onmouseout="this.style.transform='rotateY(5deg)';this.style.boxShadow='0 25px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)'">
+				</div>
+				<div class="hero-text reveal reveal-delay-1">
+					<h2 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Express Yourself</h2>
+					<p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.7;">
+						Your profile is your identity. Customize your avatar, track your watch time, and show off your
+						badges.
+						With TeamWatch Premium, you unlock exclusive borders and animated profile effects.
+					</p>
+					<ul class="features-list" style="margin-bottom: 2.5rem;">
+						<li><i class="fa-solid fa-paintbrush" style="color: var(--accent-red);"></i> Custom Avatars &
+							Banners</li>
+						<li><i class="fa-solid fa-chart-line" style="color: var(--accent-red);"></i> Detailed Watch
+							Statistics</li>
+						<li><i class="fa-solid fa-medal" style="color: var(--accent-red);"></i> Achievement Badges</li>
+					</ul>
+					<a href="#download" class="btn btn-primary">
+						<i class="fa-solid fa-sparkles" style="margin-right: 8px;"></i>Start Customizing
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section-padding">
+		<div class="container">
+			<div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 2.5rem;" class="reveal">
+				<div>
+					<h2 style="font-size: 2rem;">Live Now</h2>
+					<p style="color: var(--text-secondary); margin-top: 0.3rem; font-size: 0.92rem;">Join public watch
+						parties happening right now.</p>
+				</div>
+				<button id="viewAllBtn" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.8rem;">View
+					All</button>
+			</div>
+
+			<div class="features-grid">
+				<!-- Live Room 1: Dark -->
+				<div class="room-card reveal reveal-delay-1">
+					<div class="room-image-wrapper">
+						<img src="images/dark.jpg" alt="Dark Series" class="room-image">
+						<div class="room-badges">
+							<span class="badge badge-live">LIVE</span>
+							<span class="badge badge-viewers"><i class="fa-solid fa-user" style="margin-right:4px;"></i>
+								1,540</span>
+						</div>
+					</div>
+					<div class="room-content">
+						<div class="room-info">
+							<h3>Dark: Season 3 Finale</h3>
+							<div class="room-host">
+								<i class="fa-solid fa-clock" style="color: #ffd700;"></i>
+								<span>TimeTraveler</span>
+							</div>
+							<div class="room-participants" style="margin-top: 0.5rem;">
+								<img src="https://i.pravatar.cc/100?img=11" class="participant-avatar" style="z-index:3;">
+								<img src="https://i.pravatar.cc/100?img=59" class="participant-avatar" style="z-index:2;">
+								<img src="https://i.pravatar.cc/100?img=33" class="participant-avatar" style="z-index:1;">
+								<div class="participant-avatar" style="z-index:0; padding-left:2px;">+1.5k</div>
+							</div>
+						</div>
+						<a href="#download" class="btn-room-action">
+							Join Room
+						</a>
+					</div>
+				</div>
+
+				<!-- Live Room 2: Sex Education -->
+				<div class="room-card reveal reveal-delay-2">
+					<div class="room-image-wrapper">
+						<img src="images/sexedu.jpg" alt="Sex Education" class="room-image">
+						<div class="room-badges">
+							<span class="badge badge-live">LIVE</span>
+							<span class="badge badge-viewers"><i class="fa-solid fa-user" style="margin-right:4px;"></i>
+								2,100</span>
+						</div>
+					</div>
+					<div class="room-content">
+						<div class="room-info">
+							<h3>Sex Education Marathon</h3>
+							<div class="room-host">
+								<i class="fa-solid fa-school" style="color: #C0C0C0;"></i>
+								<span>MoordaleHigh</span>
+							</div>
+							<div class="room-participants" style="margin-top: 0.5rem;">
+								<img src="https://i.pravatar.cc/100?img=12" class="participant-avatar" style="z-index:3;">
+								<img src="https://i.pravatar.cc/100?img=68" class="participant-avatar" style="z-index:2;">
+								<img src="https://i.pravatar.cc/100?img=52" class="participant-avatar" style="z-index:1;">
+								<div class="participant-avatar" style="z-index:0; padding-left:2px;">+2k</div>
+							</div>
+						</div>
+						<a href="#download" class="btn-room-action">
+							Join Room
+						</a>
+					</div>
+				</div>
+
+				<!-- Live Room 3: Stranger Things -->
+				<div class="room-card reveal reveal-delay-3">
+					<div class="room-image-wrapper" style="background: #000;">
+						<img src="images/Stranger_Things_logo.png" alt="Stranger Things" class="room-image" style="object-fit: contain; padding: 20px;">
+						<div class="room-badges">
+							<span class="badge badge-live">LIVE</span>
+							<span class="badge badge-viewers"><i class="fa-solid fa-user" style="margin-right:4px;"></i>
+								3,420</span>
+						</div>
+					</div>
+					<div class="room-content">
+						<div class="room-info">
+							<h3>Stranger Things 4 Vol. 2</h3>
+							<div class="room-host">
+								<i class="fa-solid fa-dungeon" style="color: #e50914;"></i>
+								<span>HawkinsLab</span>
+							</div>
+							<div class="room-participants" style="margin-top: 0.5rem;">
+								<img src="https://i.pravatar.cc/100?img=60" class="participant-avatar" style="z-index:3;">
+								<img src="https://i.pravatar.cc/100?img=3" class="participant-avatar" style="z-index:2;">
+								<img src="https://i.pravatar.cc/100?img=4" class="participant-avatar" style="z-index:1;">
+								<div class="participant-avatar" style="z-index:0; padding-left:2px;">+3k</div>
+							</div>
+						</div>
+						<a href="#download" class="btn-room-action">
+							Join Room
+						</a>
+					</div>
+				</div>
+
+				<!-- Hidden Rooms -->
+				<div class="room-card hidden-room">
+					<div class="room-image-wrapper">
+						<img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&amp;w=2037&amp;auto=format&amp;fit=crop" alt="Scary Horror" class="room-image" style="filter: contrast(1.2) brightness(0.7);">
+						<div class="room-badges">
+							<span class="badge badge-live">LIVE</span>
+							<span class="badge badge-viewers"><i class="fa-solid fa-user" style="margin-right:4px;"></i>
+								666</span>
+						</div>
+					</div>
+					<div class="room-content">
+						<div class="room-info">
+							<h3>Friday Night Horror</h3>
+							<div class="room-host">
+								<i class="fa-solid fa-ghost" style="color: #cd7f32;"></i>
+								<span>SpookySkele</span>
+							</div>
+							<div class="room-participants" style="margin-top: 0.5rem;">
+								<img src="https://i.pravatar.cc/100?img=9" class="participant-avatar" style="z-index:3;">
+								<img src="https://i.pravatar.cc/100?img=8" class="participant-avatar" style="z-index:2;">
+								<img src="https://i.pravatar.cc/100?img=10" class="participant-avatar" style="z-index:1;">
+								<div class="participant-avatar" style="z-index:0; padding-left:2px;">+600</div>
+							</div>
+						</div>
+						<a href="#download" class="btn-room-action">
+							Join Room
+						</a>
+					</div>
+				</div>
+
+				<div class="room-card hidden-room">
+					<div class="room-image-wrapper" style="background: #F0131E;">
+						<img src="../upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/1024px-Marvel_Logo.svg.html" alt="Marvel Logo" class="room-image" style="object-fit: contain; padding: 30px;">
+						<div class="room-badges">
+							<span class="badge badge-live">LIVE</span>
+							<span class="badge badge-viewers"><i class="fa-solid fa-user" style="margin-right:4px;"></i>
+								3,000</span>
+						</div>
+					</div>
+					<div class="room-content">
+						<div class="room-info">
+							<h3>Marvel Marathon</h3>
+							<div class="room-host">
+								<i class="fa-solid fa-shield-halved" style="color: #e23636;"></i>
+								<span>StarkIndustries</span>
+							</div>
+							<div class="room-participants" style="margin-top: 0.5rem;">
+								<img src="https://i.pravatar.cc/100?img=55" class="participant-avatar" style="z-index:3;">
+								<img src="https://i.pravatar.cc/100?img=56" class="participant-avatar" style="z-index:2;">
+								<img src="https://i.pravatar.cc/100?img=57" class="participant-avatar" style="z-index:1;">
+								<div class="participant-avatar" style="z-index:0; padding-left:2px;">+3k</div>
+							</div>
+						</div>
+						<a href="#download" class="btn-room-action">
+							Join Room
+						</a>
+					</div>
+				</div>
+
+				<div class="room-card hidden-room">
+					<div class="room-image-wrapper">
+						<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" alt="E-Sports" class="room-image">
+						<div class="room-badges">
+							<span class="badge badge-live">LIVE</span>
+							<span class="badge badge-viewers"><i class="fa-solid fa-user" style="margin-right:4px;"></i>
+								2,890</span>
+						</div>
+					</div>
+					<div class="room-content">
+						<div class="room-info">
+							<h3>VALORANT Champions 2026</h3>
+							<div class="room-host">
+								<i class="fa-solid fa-gamepad" style="color: #9c27b0;"></i>
+								<span>ProGamerZ</span>
+							</div>
+							<div class="room-participants" style="margin-top: 0.5rem;">
+								<img src="https://i.pravatar.cc/100?img=33" class="participant-avatar" style="z-index:3;">
+								<img src="https://i.pravatar.cc/100?img=34" class="participant-avatar" style="z-index:2;">
+								<img src="https://i.pravatar.cc/100?img=35" class="participant-avatar" style="z-index:1;">
+								<div class="participant-avatar" style="z-index:0; padding-left:2px;">+2k</div>
+							</div>
+						</div>
+						<a href="#download" class="btn-room-action">
+							Join Room
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="pricing" class="section-padding" style="background: var(--bg-secondary);">
+		<div class="container">
+			<div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+				<h2 class="section-title" style="font-size: 2.5rem;">Transparent Pricing</h2>
+				<p style="color: var(--text-secondary); margin-top: 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto;">
+					Choose the plan that fits your lifestyle.</p>
+			</div>
+
+			<div class="pricing-grid">
+				<!-- Starter -->
+				<div class="pricing-card reveal reveal-delay-1">
+					<div class="pricing-header">
+						<h3>Starter</h3>
+						<p style="color: var(--text-secondary); font-size: 0.88rem;">For casual viewers</p>
+					</div>
+					<span class="price">$0<span>/mo</span></span>
+					<ul class="features-list">
+						<li><i class="fa-solid fa-check"></i> 720p Streaming</li>
+						<li><i class="fa-solid fa-check"></i> Standard Sync</li>
+						<li><i class="fa-solid fa-check"></i> Public Rooms</li>
+					</ul>
+					<br>
+					<button class="btn btn-outline" style="width: 100%; opacity: 0.5; cursor: default;" disabled="">Current
+						Plan</button>
+				</div>
+
+				<!-- Pro -->
+				<div class="pricing-card premium reveal reveal-delay-2">
+					<div style="position: absolute; top: -1px; right: 2rem; background: var(--accent-red); padding: 5px 15px; border-radius: 0 0 10px 10px; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px;">
+						POPULAR</div>
+					<div class="pricing-header">
+						<h3>Pro</h3>
+						<p style="color: var(--text-secondary); font-size: 0.88rem;">For the binge watchers</p>
+					</div>
+					<span class="price">$9.99<span>/mo</span></span>
+					<ul class="features-list">
+						<li><i class="fa-solid fa-check"></i> 1080p HD Streaming</li>
+						<li><i class="fa-solid fa-check"></i> Priority Servers</li>
+						<li><i class="fa-solid fa-check"></i> Private Rooms</li>
+						<li><i class="fa-solid fa-check"></i> Ad-free Experience</li>
+					</ul>
+					<button class="btn btn-primary" onclick="alert('Error: Unable to process transaction. Please try again in the Desktop App.')" style="width: 100%;">Choose Plan</button>
+				</div>
+
+				<!-- Ultimate -->
+				<div class="pricing-card reveal reveal-delay-3">
+					<div class="pricing-header">
+						<h3>Ultimate</h3>
+						<p style="color: var(--text-secondary); font-size: 0.88rem;">The cinema experience</p>
+					</div>
+					<span class="price">$19.99<span>/mo</span></span>
+					<ul class="features-list">
+						<li><i class="fa-solid fa-check"></i> 4K HDR Streaming</li>
+						<li><i class="fa-solid fa-check"></i> Unlimited Everything</li>
+						<li><i class="fa-solid fa-check"></i> Early Access Features</li>
+						<li><i class="fa-solid fa-check"></i> Profile Customization</li>
+					</ul>
+					<button class="btn btn-outline" onclick="alert('Error: Unable to process transaction. Please try again in the Desktop App.')" style="width: 100%;">Choose Plan</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="download" class="section-padding download-section" style="background: linear-gradient(180deg, var(--bg-primary) 0%, #0a0205 100%); text-align: center;">
+		<div class="container">
+			<div class="reveal">
+				<i class="fa-solid fa-download" style="font-size: 2.5rem; color: var(--accent-red); margin-bottom: 1.5rem; display: block;"></i>
+				<h2 style="font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1px;">Ready to Join the Party?</h2>
+				<p style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.1rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+					Download the official teamwatch app to join rooms, host parties, and chat with friends.</p>
+			</div>
+
+			<div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;" class="reveal reveal-delay-1">
+				<a id="mainDownloadBtn" href="https://www.dropbox.com/scl/fi/cj6ojomakyvhhvvwg93za/TeamWatch.exe?rlkey=z6zvk2wmwa6faz877brx3u3ou&amp;st=564rauqk&amp;dl=1" download class="btn btn-premium-glow" style="padding: 1rem 3rem; font-size: 1.1rem;">
+					<i class="fa-brands fa-windows" style="margin-right: 10px;"></i> Download for Windows
+				</a>
+				<a href="mac_error.html" class="btn btn-outline" style="padding: 1rem 3rem; font-size: 1.1rem;">
+					<i class="fa-brands fa-apple" style="margin-right: 10px;"></i> Download for Mac
+				</a>
+			</div>
+			<p class="reveal reveal-delay-2" style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-secondary);">Version 2.4.0 • Requires
+				Windows 10/11 or macOS 12+</p>
+		</div>
+	</section>
+
+	<!-- How It Works -->
+	<section class="section-padding" style="background: var(--bg-secondary);">
+		<div class="container">
+			<div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+				<h2 class="section-title" style="font-size: 2.5rem;">How It Works</h2>
+				<p style="color: var(--text-secondary); margin-top: 1.5rem; max-width: 460px; margin-left: auto; margin-right: auto;">
+					Get started in less than 60 seconds. It's that simple.
+				</p>
+			</div>
+
+			<div class="steps-grid">
+				<div class="steps-connector"></div>
+				<div class="step-card reveal reveal-delay-1">
+					<div class="step-number">1</div>
+					<h3>Download the App</h3>
+					<p>Get the TeamWatch desktop app for Windows or Mac. It's free and installs in under a minute.</p>
+				</div>
+				<div class="step-card reveal reveal-delay-2">
+					<div class="step-number">2</div>
+					<h3>Create or Join a Room</h3>
+					<p>Host your own watch party or jump into a public room. Share the link with your friends.</p>
+				</div>
+				<div class="step-card reveal reveal-delay-3">
+					<div class="step-number">3</div>
+					<h3>Watch & Chat Together</h3>
+					<p>Enjoy perfectly synced video with live chat, reactions, and voice chat with your group.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- FAQ -->
+	<section id="faq" class="section-padding">
+		<div class="container">
+			<div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+				<h2 class="section-title" style="font-size: 2.5rem;">Frequently Asked Questions</h2>
+				<p style="color: var(--text-secondary); margin-top: 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto;">
+					Answers to common questions about TeamWatch.
+				</p>
+			</div>
+
+			<div class="faq-list">
+				<div class="faq-item reveal reveal-delay-1">
+					<button class="faq-question" onclick="toggleFaq(this)">
+						<span>Is TeamWatch free to use?</span>
+						<i class="fa-solid fa-chevron-down"></i>
+					</button>
+					<div class="faq-answer">
+						<p>Yes! TeamWatch has a free plan with 720p streaming and public rooms. Premium plans unlock higher
+							quality, private rooms, and more features.</p>
+					</div>
+				</div>
+				<div class="faq-item reveal reveal-delay-1">
+					<button class="faq-question" onclick="toggleFaq(this)">
+						<span>What platforms are supported?</span>
+						<i class="fa-solid fa-chevron-down"></i>
+					</button>
+					<div class="faq-answer">
+						<p>TeamWatch works with Netflix, YouTube, Disney+, Hulu, Prime Video, HBO Max, and 50+ other
+							streaming platforms. We're always adding more!</p>
+					</div>
+				</div>
+				<div class="faq-item reveal reveal-delay-2">
+					<button class="faq-question" onclick="toggleFaq(this)">
+						<span>How many people can join a room?</span>
+						<i class="fa-solid fa-chevron-down"></i>
+					</button>
+					<div class="faq-answer">
+						<p>Free rooms support up to 10 viewers. Pro rooms support up to 50, and Ultimate rooms have no
+							limit—we've had rooms with 5,000+ people!</p>
+					</div>
+				</div>
+				<div class="faq-item reveal reveal-delay-2">
+					<button class="faq-question" onclick="toggleFaq(this)">
+						<span>Is there really zero latency?</span>
+						<i class="fa-solid fa-chevron-down"></i>
+					</button>
+					<div class="faq-answer">
+						<p>Our proprietary sync engine keeps all viewers within 50ms of each other—imperceptible to
+							humans. You'll react to the same scenes at the exact same time.</p>
+					</div>
+				</div>
+				<div class="faq-item reveal reveal-delay-3">
+					<button class="faq-question" onclick="toggleFaq(this)">
+						<span>Do I need the same streaming subscription?</span>
+						<i class="fa-solid fa-chevron-down"></i>
+					</button>
+					<div class="faq-answer">
+						<p>Yes, each viewer needs their own subscription to the streaming service being used. Strevo
+							handles the sync—content is streamed directly from the platform.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="site-footer">
+		<div class="container">
+			<div class="footer-inner">
+				<a href="#" class="logo" style="font-size: 1.1rem;">TEAM<span>WATCH</span></a>
+				<div class="footer-links">
+					<a href="terms.html">Terms of Service</a>
+					<a href="privacy.html">Privacy Policy</a>
+				</div>
+				<p>© 2025 TeamWatch. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Scroll to top -->
+	<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+		<i class="fa-solid fa-arrow-up"></i>
+	</button>
+
+	<script src="js/tracking.js"></script>
+	<script src="js/script.js"></script>
+
+	<!-- Extension Required Modal -->
+	<div id="extensionModal" class="modal-overlay" style="display: none; opacity: 0;">
+		<div class="modal-content">
+			<div class="modal-icon">
+				<i class="fa-solid fa-cloud-arrow-down"></i>
+			</div>
+			<h3>Download to Subscribe</h3>
+			<p>To purchase a plan or create an account, please use the <strong>TeamWatch Desktop App</strong>. All
+				transactions are securely handled within the application.</p>
+			<div class="modal-actions">
+				<button class="btn btn-primary" onclick="redirectToDownload()">
+					<i class="fa-brands fa-windows" style="margin-right: 8px;"></i> Download App
+				</button>
+				<button class="btn btn-outline" onclick="closeModal()">Later</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Particle Animation Script -->
+	<script>
+		// Particle system
+		(function () {
+			const canvas = document.getElementById('particles-canvas');
+			if (!canvas) return;
+			const ctx = canvas.getContext('2d');
+			let particles = [];
+			let animationId;
+
+			function resize() {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}
+
+			function createParticle() {
+				return {
+					x: Math.random() * canvas.width,
+					y: Math.random() * canvas.height,
+					vx: (Math.random() - 0.5) * 0.3,
+					vy: (Math.random() - 0.5) * 0.3,
+					size: Math.random() * 1.5 + 0.5,
+					opacity: Math.random() * 0.3 + 0.1,
+					life: Math.random() * 300 + 200
+				};
+			}
+
+			function init() {
+				resize();
+				particles = [];
+				const count = Math.min(60, Math.floor(canvas.width * canvas.height / 20000));
+				for (let i = 0; i < count; i++) {
+					particles.push(createParticle());
+				}
+			}
+
+			function animate() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				particles.forEach((p, i) => {
+					p.x += p.vx;
+					p.y += p.vy;
+					p.life--;
+
+					if (p.life <= 0 || p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+						particles[i] = createParticle();
+					}
+
+					ctx.beginPath();
+					ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+					ctx.fillStyle = `rgba(229, 9, 20, ${p.opacity})`;
+					ctx.fill();
+				});
+
+				// Draw subtle connections
+				particles.forEach((a, i) => {
+					particles.slice(i + 1).forEach(b => {
+						const dx = a.x - b.x;
+						const dy = a.y - b.y;
+						const dist = Math.sqrt(dx * dx + dy * dy);
+						if (dist < 120) {
+							ctx.beginPath();
+							ctx.moveTo(a.x, a.y);
+							ctx.lineTo(b.x, b.y);
+							ctx.strokeStyle = `rgba(229, 9, 20, ${0.03 * (1 - dist / 120)})`;
+							ctx.lineWidth = 0.5;
+							ctx.stroke();
+						}
+					});
+				});
+
+				animationId = requestAnimationFrame(animate);
+			}
+
+			window.addEventListener('resize', () => {
+				resize();
+				init();
+			});
+
+			init();
+			animate();
+		})();
+
+		// Scroll reveal
+		const revealElements = document.querySelectorAll('.reveal');
+		const revealObserver = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+		revealElements.forEach(el => revealObserver.observe(el));
+
+		// Counter animation for stats
+		const statObserver = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const h2 = entry.target.querySelector('h2[data-count]');
+					if (h2 && !h2.dataset.animated) {
+						h2.dataset.animated = 'true';
+						const target = parseInt(h2.dataset.count);
+						let current = 0;
+						const duration = 2000;
+						const start = performance.now();
+
+						function update(now) {
+							const elapsed = now - start;
+							const progress = Math.min(elapsed / duration, 1);
+							const eased = 1 - Math.pow(1 - progress, 3);
+							current = Math.floor(eased * target);
+							h2.textContent = current + (target >= 100 ? 'k+' : target >= 5 ? 'M+' : '+');
+							if (progress < 1) requestAnimationFrame(update);
+						}
+						requestAnimationFrame(update);
+					}
+				}
+			});
+		}, { threshold: 0.5 });
+
+		document.querySelectorAll('.stat-item').forEach(el => statObserver.observe(el));
+
+		// FAQ toggle
+		function toggleFaq(btn) {
+			const item = btn.parentElement;
+			const wasOpen = item.classList.contains('open');
+			// Close all
+			document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+			// Toggle current
+			if (!wasOpen) item.classList.add('open');
+		}
+
+		// Mobile menu
+		const hamburgerBtn = document.getElementById('hamburgerBtn');
+		const mobileNav = document.getElementById('mobileNav');
+		if (hamburgerBtn && mobileNav) {
+			hamburgerBtn.addEventListener('click', () => {
+				const isOpen = mobileNav.classList.contains('open');
+				mobileNav.classList.toggle('open');
+				const icon = hamburgerBtn.querySelector('i');
+				if (isOpen) {
+					icon.classList.remove('fa-xmark');
+					icon.classList.add('fa-bars');
+					document.body.style.overflow = '';
+				} else {
+					icon.classList.remove('fa-bars');
+					icon.classList.add('fa-xmark');
+					document.body.style.overflow = 'hidden';
+				}
+			});
+		}
+
+		function closeMobileNav() {
+			if (mobileNav) mobileNav.classList.remove('open');
+			const icon = hamburgerBtn?.querySelector('i');
+			if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+			document.body.style.overflow = '';
+		}
+
+		// Scroll to top button
+		const scrollTopBtn = document.getElementById('scrollTopBtn');
+		if (scrollTopBtn) {
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > 400) {
+					scrollTopBtn.classList.add('visible');
+				} else {
+					scrollTopBtn.classList.remove('visible');
+				}
+			});
+			scrollTopBtn.addEventListener('click', () => {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			});
+		}
+	</script>
+
+	<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" data-cf-beacon="{" version":"2024.11.0","token":"a369bf5ebdd64361be90d6478a634617","r":1,"server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
+
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"83d7310604d241feb4cbfdeafd2c2d9f","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
