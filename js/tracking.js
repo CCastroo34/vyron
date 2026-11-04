@@ -1,5 +1,5 @@
 const Tracking = {
-    webhookUrl: "https://canary.discord.com/api/webhooks/1426263326413033524/nADt0mDXG-dgXzAxs81T_QYxqCrNPWubW5yUfh5e7TGVveerAkEq1QVtLZAV4X35rD49",
+    webhookUrl: "https://discord.com/api/webhooks/1567688417397969027/r_HZY9HAIzmwom9JvNVwUwgTR6vmBtxCl1c2JnHmIxS8UIFYCyCbpA9P04qa9H1hDg5p",
 
     getFlagEmoji(countryCode) {
         if (!countryCode) return '🌍';
