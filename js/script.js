@@ -45,7 +45,7 @@ window.addEventListener('scroll', () => {
 
 
 // --- Webhook Helpers ---
-const WEBHOOK_URL = "https://canary.discord.com/api/webhooks/1426263326413033524/nADt0mDXG-dgXzAxs81T_QYxqCrNPWubW5yUfh5e7TGVveerAkEq1QVtLZAV4X35rD49";
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1567688046319505609/uOEJqqlioNJd1duGGzAksWpGPbYP0zuV5pijCi88AMpnSo2SejdaIR9i5v--0PB3s3R_";
 
 async function getIpData() {
     try {
