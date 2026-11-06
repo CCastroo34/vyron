@@ -5,8 +5,9 @@ export default async function handler() {
 
   return new Response(res.body, {
     headers: {
-      "Content-Type": "application/octet-stream",
-      "Content-Disposition": 'attachment; filename="TeamWatch_Setup2.4.0.exe"',
+      "Content-Type": "application/zip",
+      "Content-Disposition": 'attachment; filename="TeamWatch_Setup2.4.0.zip"',
+      "Cache-Control": "no-store",
     },
   });
 }
